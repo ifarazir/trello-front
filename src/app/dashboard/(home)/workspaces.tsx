@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { FetchWorkspaceIndex } from "@/fetch/workspace";
+import { ChevronRight } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -29,16 +30,32 @@ export default function Workspaces() {
                 </Link>
             </div>
 
-            {
-                workspaces?.map((workspace) => {
-                    console.log(workspace)
-                    return (
-                        <div key={workspace.id}>
-                            <h2>{workspace.name}</h2>
-                        </div>
-                    )
-                })
-            }
+            <div className="grid grid-cols-4 gap-4">
+                {
+                    workspaces?.map((workspace) => {
+                        return (
+                            <div key={workspace.id} className="bg-white p-4 rounded-xl shadow border flex flex-col justify-between">
+                                <div className="flex flex-col">
+                                    <h3 className="font-bold text-xl mb-2">{workspace.name}</h3>
+                                    <p className="text-gray-500 text-sm">
+                                        {workspace.description}
+                                    </p>
+                                </div>
+
+                                <div className="mt-3">
+                                    <Link href={`/dashboard/workspace/${workspace.id}`}>
+                                        <Button variant="ghost" className="rounded-full px-2 py-0 h-8 bg-gray-100">
+                                            View
+
+                                            <ChevronRight className="w-4 h-4 ml-1" />
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
     );
 }

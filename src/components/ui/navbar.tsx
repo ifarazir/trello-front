@@ -11,7 +11,7 @@ export default function Nav() {
     return (
         <header className="bg-blue-600 border-b text-white py-4">
             <div className="container mx-auto flex items-center justify-between gap-5">
-                <Link href="/">
+                <Link href="/dashboard">
                     <p className='text-3xl text-start font-black text-white'>
                         Trello
                     </p>
